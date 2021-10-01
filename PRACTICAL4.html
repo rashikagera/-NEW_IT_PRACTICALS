@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Tables for 2 to 10</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		@font-face {
+			font-family: 'Open Sans', sans-serif;
+			src: url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+		}
+
+		* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+
+		body,
+		html {
+			height: 100%;
+			font-family: sans-serif;
+		}
+
+		.limiter {
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.container-table {
+			width: 100%;
+			min-height: 100vh;
+			background: #c850c0;
+			background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+			background: -o-linear-gradient(45deg, #4158d0, #c850c0);
+			background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+			background: linear-gradient(45deg, #4158d0, #c850c0);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			padding: 33px 30px;
+		}
+
+		.wrap-table {
+			width: 1170px;
+		}
+
+		table {
+			border-spacing: 1;
+			border-collapse: collapse;
+			background: white;
+			border-radius: 10px;
+			overflow: hidden;
+			width: 100%;
+			margin: 0 auto;
+			position: relative;
+		}
+
+		table * {
+			position: relative;
+		}
+
+		table td,
+		table th {
+			padding-left: 8px;
+			text-align: center;
+		}
+
+		table thead tr {
+			height: 60px;
+			background: #36304a;
+		}
+
+		table tbody tr {
+			height: 50px;
+		}
+
+		table tbody tr:last-child {
+			border: 0;
+		}
+
+		.table-head th {
+			font-family: OpenSans-Regular;
+			font-size: 18px;
+			color: #fff;
+			line-height: 1.2;
+			font-weight: unset;
+		}
+
+		tbody tr:nth-child(even) {
+			background-color: #f5f5f5;
+		}
+
+		tbody tr {
+			font-family: OpenSans-Regular;
+			font-size: 15px;
+			color: #808080;
+			line-height: 1.2;
+			font-weight: unset;
+		}
+
+		tbody tr:hover {
+			color: #555555;
+			background-color: #f5f5f5;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<div class="limiter">
+	<div class="container-table">
+		<div class="wrap-table">
+			<h2 id="timer" style="text-align:center;color: white;font-weight: 700;">5.0</h2>
+			<div class="table">
+				<table class="table-bordered">
+					<thead class="table-head">
+						<tr class="table100-head">
+							<th>X</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>5</th>
+							<th>6</th>
+							<th>7</th>
+							<th>8</th>
+							<th>9</th>
+							<th>10</th>
+						</tr>
+					</thead>
+					<tbody id="multi">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	var curr_multi = 1
+	var curr_time = 2000
+
+	var table_timer = setInterval(() => {
+		let new_row = `<tr style="font-size:${16 + curr_multi}px"><td>${curr_multi}</td>`
+		for (let i = 2; i <= 10; i++) {
+			new_row += `<td>${curr_multi * i}</td>`
+		}
+		curr_multi += 1
+		document.getElementById("multi").innerHTML += new_row
+	}, 2000)
+
+	setInterval(() => {
+		let split = String(curr_time / 100).split("")
+		if (split.length == 1) {
+			split.push("0")
+			split.reverse()
+		}
+		document.getElementById("timer").innerHTML = split.join(".")
+		curr_time -= 100
+		if (curr_time <= 0) {
+			curr_time = 2000
+		}
+	}, 100)
+</script>
+
+</body>
+
+</html>
